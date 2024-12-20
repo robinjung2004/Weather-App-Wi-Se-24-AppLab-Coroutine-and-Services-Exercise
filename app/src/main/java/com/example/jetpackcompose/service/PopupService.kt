@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import android.app.PendingIntent
+import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import com.example.jetpackcompose.MainActivity
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -36,16 +37,22 @@ class PopupService : Service() {
         super.onCreate()
         createNotificationChannel()
 
-
         ////////////////////////////////////
 
-        //TODO starte den Service hier
+        startForegroundServiceWithNotification()
 
         ////////////////////////////////////
 
 
         registerUpdateReceiver()
         initializeTimerFromSettings()
+    }
+
+    private fun startForegroundServiceWithNotification() {
+        val notification = getNotification("Popup Service")
+
+        // Start the service in the foreground with a notification
+        startForeground(1, notification)
     }
 
     override fun onDestroy() {

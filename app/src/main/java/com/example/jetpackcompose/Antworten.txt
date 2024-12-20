@@ -1,0 +1,17 @@
+A) Coroutinen ermöglichen asynchrone Ausführung von Codeblöcken welche besser lesbar sind als Threads
+   und außerdem sind sie leichtgewichtig, das heißt sie blockieren den Mainthread nicht. Somit wird
+   die UI nicht von der Coroutine blockiert. Ein zusätzlicher Vorteil sind die strukturierten Methoden
+   um Nebenläufigkeiten und Fehler zu verwalten.
+
+B) Ich habe mich für den IO Dispatcher entschieden, da dieser für IO Aufgaben wie Netzwerkaufrufe
+   spezialisiert ist.
+
+C) Zwei Anwendungsfälle für Services sind Musikplayer Apps wie Spotify und Navigations-Apps wie Google
+   Maps. Musik-Apps nutzen Foreground-Services um  ständig das aktuell laufende Medium anzuzeigen und
+   ermöglichen so das Pausieren oder vorspulen des Mediums. Auch Navigations-Apps nutzen Foreground-Services,
+   da diese ständig Zugriff auf den aktuellen Standort des Nutzers brauchen.
+
+D) Man kann Dispatchers optimal für spezifische Aufgaben nutzen, es ist bessere Fehlerbehandlung möglich
+   und Ressourcen werden optimiert, da Hintergrundarbeit nur bei Bedarf ausgeführt wird und Koroutinen
+   pausiert und später fortgesetzt werden können. In der SettingsView.kt wird indirekt eine Kombination
+   aus Coroutine und Service verwendet im Code des Button "Save"
